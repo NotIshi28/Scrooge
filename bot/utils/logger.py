@@ -11,7 +11,7 @@ logging.getLogger("flask").setLevel(logging.WARNING)
 
 
 current_date = datetime.now().strftime("%Y-%m-%d")
-file_handler = logging.FileHandler(f"logs/zearry_{current_date}.log")
+file_handler = logging.FileHandler(f"logs/scrooge_{current_date}.log")
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(
     logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s")

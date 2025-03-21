@@ -39,7 +39,7 @@ Investing in stocks can offer potential for growth but also carries risk.  Would
 
 2025-03-21 16:30:31,782 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
 2025-03-21 16:30:31,783 [INFO] groq: attempting to fallback to groq
-2025-03-21 16:30:32,526 [INFO] groq: fallback response received in 0.74s: I'm Zearry, your AI financial assistant!  I can help you manage your money better with insights and personalized advice. What can I tell you about today?  
+2025-03-21 16:30:32,526 [INFO] groq: fallback response received in 0.74s: I'm Scrooge, your AI financial assistant!  I can help you manage your money better with insights and personalized advice. What can I tell you about today?  
 
 
 2025-03-21 16:30:51,070 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
@@ -65,7 +65,7 @@ Would you like help creating a budget or exploring investment options?
 
 2025-03-21 16:31:42,670 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
 2025-03-21 16:31:42,670 [INFO] groq: attempting to fallback to groq
-2025-03-21 16:31:43,438 [INFO] groq: fallback response received in 0.77s: I'm Zearry, your AI financial assistant. What can I help you with today? 
+2025-03-21 16:31:43,438 [INFO] groq: fallback response received in 0.77s: I'm Scrooge, your AI financial assistant. What can I help you with today? 
 
 2025-03-21 16:34:25,030 [INFO] groq: API clients init
 2025-03-21 16:34:58,397 [INFO] groq: API clients init
