@@ -1,0 +1,89 @@
+2025-03-21 16:09:38,329 [INFO] groq: API clients init
+2025-03-21 16:11:30,196 [INFO] groq: API clients init
+2025-03-21 16:11:44,659 [INFO] groq: API clients init
+2025-03-21 16:12:48,433 [INFO] groq: API clients init
+2025-03-21 16:13:02,635 [INFO] groq: API clients init
+2025-03-21 16:13:18,060 [INFO] groq: API clients init
+2025-03-21 16:13:48,803 [INFO] groq: API clients init
+2025-03-21 16:14:02,920 [INFO] groq: API clients init
+2025-03-21 16:14:12,193 [INFO] groq: API clients init
+2025-03-21 16:14:33,587 [INFO] groq: API clients init
+2025-03-21 16:15:33,324 [INFO] groq: API clients init
+2025-03-21 16:16:02,257 [INFO] groq: API clients init
+2025-03-21 16:16:27,548 [INFO] groq: API clients init
+2025-03-21 16:16:42,363 [INFO] groq: API clients init
+2025-03-21 16:17:58,855 [INFO] groq: API clients init
+2025-03-21 16:18:37,154 [INFO] groq: API clients init
+2025-03-21 16:25:54,992 [INFO] groq: API clients init
+2025-03-21 16:28:14,222 [INFO] groq: API clients init
+2025-03-21 16:28:19,912 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:28:19,912 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:29:41,634 [INFO] groq: API clients init
+2025-03-21 16:29:47,379 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:29:47,380 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:29:48,159 [INFO] groq: fallback response received in 0.78s: Stocks represent ownership in a company.  
+
+Buying stocks allows you to potentially profit from the company's growth. 
+
+However, stock values can fluctuate, so it's important to understand the risks involved before investing.  
+
+Would you like me to help you explore investment options further? 
+
+
+2025-03-21 16:30:03,973 [INFO] groq: API clients init
+2025-03-21 16:30:09,700 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:30:09,701 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:30:10,581 [INFO] groq: fallback response received in 0.88s: Stocks represent ownership in a company.  
+
+Investing in stocks can offer potential for growth but also carries risk.  Would you like to learn more about specific types of stocks or investment strategies? 
+
+2025-03-21 16:30:31,782 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:30:31,783 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:30:32,526 [INFO] groq: fallback response received in 0.74s: I'm Zearry, your AI financial assistant!  I can help you manage your money better with insights and personalized advice. What can I tell you about today?  
+
+
+2025-03-21 16:30:51,070 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:30:51,071 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:30:51,827 [INFO] groq: fallback response received in 0.76s: Please provide me with the data you'd like me to analyze.  
+
+For example, you could say: 
+
+* "Analyze my monthly spending habits."
+* "Analyze my recent transactions."
+* "Analyze my savings goal progress." 
+
+
+I'm ready to help you understand your finances better! 
+
+
+2025-03-21 16:31:21,969 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:31:21,969 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:31:22,743 [INFO] groq: fallback response received in 0.77s: I'm designed to provide personal financial advice, not market analysis.  I can't offer information on specific stocks like Google. 
+
+Would you like help creating a budget or exploring investment options? 
+
+
+2025-03-21 16:31:42,670 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:31:42,670 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:31:43,438 [INFO] groq: fallback response received in 0.77s: I'm Zearry, your AI financial assistant. What can I help you with today? 
+
+2025-03-21 16:34:25,030 [INFO] groq: API clients init
+2025-03-21 16:34:58,397 [INFO] groq: API clients init
+2025-03-21 16:35:04,313 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:35:04,313 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:35:05,151 [INFO] groq: fallback response received in 0.84s: Stocks represent ownership in a company. Buying stock means you become a shareholder, potentially benefiting from the company's profits. 
+
+Remember, investing in stocks carries risks, so it's important to research and understand your investment before making any decisions. 
+
+
+2025-03-21 16:35:53,611 [INFO] groq: API clients init
+2025-03-21 16:35:59,138 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:35:59,138 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:35:59,942 [INFO] groq: fallback response received in 0.80s: Stocks represent ownership in a company.  Buying stock allows you to participate in a company's success, as your returns are tied to its performance.  
+
+Would you like to learn more about how to invest in stocks? 
+
+2025-03-21 16:36:20,719 [ERROR] groq: Error in getResponse: 'Chat' object has no attribute 'completion'
+2025-03-21 16:36:20,720 [INFO] groq: attempting to fallback to groq
+2025-03-21 16:36:21,492 [INFO] groq: fallback response received in 0.77s: Okay, is there anything else I can help you with today? 
+
