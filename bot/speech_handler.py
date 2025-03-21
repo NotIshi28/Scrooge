@@ -1,5 +1,6 @@
 import speech_recognition as sr
 from gtts import gTTS
+import pyttsx3
 import pygame
 import tempfile
 import os
@@ -9,7 +10,20 @@ import uuid
 class SpeechHandler:
     def __init__(self):
         self.r = sr.Recognizer()
-        pygame.mixer.init()
+
+        self.engine = pyttsx3.init()
+
+        voices = self.engine.getProperty('voices')
+
+        for idx,voice in enumerate(voices):
+            print(f"Voice {idx}: {voice.name}")
+
+        self.engine.setProperty('voice', voices[0].id)
+
+        self.engine.setProperty('rate', 170)
+        self.engine.setProperty('volume', 0.8)
+        self._is_speaking = False
+
     def listen(self):
         with sr.Microphone() as source:
             self.r.adjust_for_ambient_noise(source, duration=0.5)
@@ -35,32 +49,43 @@ class SpeechHandler:
             print("No text to speak")
             return
         
-        temp_dir = tempfile.gettempdir()
-        unique_id = str(uuid.uuid4())
-        temp_file = os.path.join(temp_dir, f"speech_{unique_id}.mp3")
+        print("Speaking response...")
+        self._is_speaking = True
 
-        try:
-            print("Generating speech...")
-            tts = gTTS(text=text, lang='en', slow=False)
-            tts.save(temp_file)
+        def onEnd(name, completed):
+            self._is_speaking = False
+        
+        self.engine.connect('finished-utterance', onEnd)
+        self.engine.say(text)
+        self.engine.runAndWait()
+
+        # temp_dir = tempfile.gettempdir()
+        # unique_id = str(uuid.uuid4())
+        # temp_file = os.path.join(temp_dir, f"speech_{unique_id}.mp3")
+
+        # try:
+        #     print("Generating speech...")
+        #     tts = gTTS(text=text, lang='en-uk', slow=False)
+        #     tts.save(temp_file)
             
-            if os.path.exists(temp_file):
-                print("Speaking response...")
-                pygame.mixer.music.load(temp_file)
-                pygame.mixer.music.play()
-                while pygame.mixer.music.get_busy():
-                    pygame.time.Clock().tick(10)
-            else:
-                print(f"Failed to create speech file: {temp_file}")
-        except Exception as e:
-            print(f"Error in speech synthesis: {e}")
-        finally:
-            try:
-                if os.path.exists(temp_file):
-                    time.sleep(0.1)
-                    os.remove(temp_file)
-            except Exception as e:
-                print(f"Error cleaning up temporary file: {e}")
+        #     if os.path.exists(temp_file):
+        #         print("Speaking response...")
+        #         pygame.mixer.music.load(temp_file)
+        #         pygame.mixer.music.play()
+        #         while pygame.mixer.music.get_busy():
+        #             pygame.time.Clock().tick(10)
+        #     else:
+        #         print(f"Failed to create speech file: {temp_file}")
+        # except Exception as e:
+        #     print(f"Error in speech synthesis: {e}")
+        # finally:
+        #     try:
+        #         if os.path.exists(temp_file):
+        #             time.sleep(0.1)
+        #             os.remove(temp_file)
+        #     except Exception as e:
+        #         print(f"Error cleaning up temporary file: {e}")
     
+
     def is_speaking(self):
-        return pygame.mixer.music.get_busy()
+        return self._is_speaking

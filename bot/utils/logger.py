@@ -43,3 +43,5 @@ def get_logger(name):
 
 
 groq_logger = get_logger("groq")
+app_logger = get_logger("app")
+bot_logger = get_logger("bot")

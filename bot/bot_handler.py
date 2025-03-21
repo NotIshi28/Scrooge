@@ -1,5 +1,7 @@
 from bot.groq_handler import getResponse
 from bot.speech_handler import SpeechHandler
+from bot.utils.logger import bot_logger as logger
+import time
 
 system_prompt = """You are Scrooge, an AI financial assistant designed to provide secure, insightful, and personalized financial advice. 
 Your goal is to help users manage their finances efficiently while keeping their information safe. 
@@ -28,6 +30,7 @@ The user has a query that:
 class InputHandler():
     def __init__(self):
         self.speech_handler = SpeechHandler()
+        self.is_running = False
 
     def getResponseFromGroq(self, input):
         response = getResponse(system_prompt, input)
@@ -48,3 +51,27 @@ class InputHandler():
             return self.processUserInput(user_input)
         else:
             return None
+        
+    def start(self):
+        logger.info("Starting audio processor")
+        self.is_running = True
+        print("starting main loop")
+        while self.is_running:
+            self.handleConversation()
+
+    def stop(self):
+        logger.info("Stopping audio processor")
+        self.is_running = False
+
+
+    def mainLoop(self):
+        logger.info("Starting main loop")
+        print("starting main loop")
+
+        while self.is_running:
+            try:
+                self.handleConversation()
+            except Exception as e:
+                logger.error(f"Error in main loop: {e}")
+                time.sleep(1)
+        logger.info("Main loop stopped")
