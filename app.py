@@ -89,7 +89,7 @@ def start_service():
 def stop_service():
     global is_running, bot_thread, input_handler, stop_threads
     print("milgyi request")
-    if not is_running:
+    if not input_handler.is_running:
         return jsonify({"status": "info", "message": "Service already stopped"})
     
     try:
