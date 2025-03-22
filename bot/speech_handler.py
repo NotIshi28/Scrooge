@@ -18,11 +18,11 @@ class SpeechHandler:
         for idx,voice in enumerate(voices):
             print(f"Voice {idx}: {voice.name}")
 
-        self.engine.setProperty('voice', voices[0].id)
+        self.engine.setProperty('voice', voices[1].id)
 
         self.engine.setProperty('rate', 170)
         self.engine.setProperty('volume', 0.8)
-        self._is_speaking = False
+        self.is_speaking = False
 
     def listen(self):
         with sr.Microphone() as source:
@@ -50,10 +50,10 @@ class SpeechHandler:
             return
         
         print("Speaking response...")
-        self._is_speaking = True
+        self.is_speaking = True
 
         def onEnd(name, completed):
-            self._is_speaking = False
+            self.is_speaking = False
         
         self.engine.connect('finished-utterance', onEnd)
         self.engine.say(text)
@@ -88,4 +88,4 @@ class SpeechHandler:
     
 
     def is_speaking(self):
-        return self._is_speaking
+        return self.is_speaking

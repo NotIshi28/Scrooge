@@ -80,7 +80,7 @@ def start_service():
 
 @app.route('/api/stop',methods=['GET'])
 def stop_service():
-    global is_running, bot_thread
+    global is_running, bot_thread, input_handler
     
     if not is_running:
         return jsonify({"status": "info", "message": "Service already stopped"})
@@ -122,7 +122,7 @@ def stop_service():
 @app.route('/api/status',methods=['GET'])
 def return_status():
     global is_running
-        
+    is_running = input_handler.getStatus() if input_handler else False
     return jsonify({
         "status": "running" if is_running else "stopped"
     })

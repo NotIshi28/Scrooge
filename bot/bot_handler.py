@@ -74,13 +74,24 @@ class InputHandler():
 
 
     def mainLoop(self):
-        logger.info("Starting main loop")
-        print("starting main loop")
+        try:
 
-        while self.is_running:
-            try:
-                self.handleConversation()
-            except Exception as e:
-                logger.error(f"Error in main loop: {e}")
-                time.sleep(1)
-        logger.info("Main loop stopped")
+            logger.info("Starting main loop")
+            print("starting main loop")
+            
+            self.speech_handler.is_speaking = False
+            self.is_running = True
+
+            while self.is_running:
+                try:
+                    self.handleConversation()
+                except Exception as e:
+                    logger.error(f"Error in main loop: {e}")
+                    time.sleep(1)
+            logger.info("Main loop stopped")
+        except Exception as e:
+            logger.error(f"Error in main loop: {e}")
+            time.sleep(1)
+
+    def getStatus(self):
+        return self.is_running
