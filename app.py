@@ -36,11 +36,19 @@ def bot_worker():
 
 @app.route('/api',methods=['GET'])
 def hello_world():
-    return 'Hello, World!'
+    return jsonify({"message": "hello world"})
 
-@app.route('/api/start',methods=['GET'])
+stop_threads = False
+
+input_handler = InputHandler()
+
+bot_thread = threading.Thread(target=input_handler.mainLoop, args=(lambda: stop_threads, ))
+bot_thread.daemon = True
+
+
+@app.route('/api/start', methods=['GET', 'POST'])
 def start_service():
-    global bot_thread, is_running, input_handler
+    global bot_thread, is_running, input_handler, stop_threads
     
     if is_running:
         return jsonify({"status": "info", "message": "Service already running"})
@@ -56,20 +64,19 @@ def start_service():
                 pass
     
 
-        input_handler = InputHandler()
+        
         input_handler.start()
                     
-        bot_thread = threading.Thread(target=input_handler.mainLoop)
-        bot_thread.daemon = True
+        
         bot_thread.start()
 
-        is_running = True
+        input_handler.is_running = True
         
         
         def announce():
             sh = SpeechHandler()
             sh.speak("Service started")
-        threading.Thread(target=announce).start()
+        announce()
         
         logger.info("Service successfully started")
         return jsonify({"status": "success", "message": "Service started"})
@@ -78,10 +85,10 @@ def start_service():
         logger.error(f"Failed to start service: {e}")
         return jsonify({"status": "error", "message": f"Failed to start service: {str(e)}"})
 
-@app.route('/api/stop',methods=['GET'])
+@app.route('/api/stop',methods=['GET', 'POST'])
 def stop_service():
-    global is_running, bot_thread, input_handler
-    
+    global is_running, bot_thread, input_handler, stop_threads
+    print("milgyi request")
     if not is_running:
         return jsonify({"status": "info", "message": "Service already stopped"})
     
@@ -100,9 +107,10 @@ def stop_service():
 
             if bot_thread.is_alive():
                 logger.info("Bot thread did not finish in time, stopping it...")
-                bot_thread._stop()
+                stop_threads = True
             
         is_running = False
+        input_handler.is_running = False
         bot_thread = None
 
         input_handler = None
@@ -119,13 +127,24 @@ def stop_service():
         logger.error(f"Error stopping service: {e}")
         return jsonify({"status": "error", "message": f"Error stopping service: {str(e)}"})
 
-@app.route('/api/status',methods=['GET'])
+@app.route('/api/status',methods=['GET', 'POST'])
 def return_status():
-    global is_running
-    is_running = input_handler.getStatus() if input_handler else False
-    return jsonify({
-        "status": "running" if is_running else "stopped"
-    })
+    global is_running, input_handler
+    try:
+        if input_handler is None:
+            return jsonify({
+                "status": "stopped"
+            })
+        else:
+            return jsonify({
+                "status": "running" if input_handler.getStatus() else "stopped"
+            })
+    except Exception as e:
+        logger.error(f"Error in status endpoint: {e}")
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        })
 
 @app.route('/api/settings',methods=['GET'])
 def view_settings():
@@ -138,4 +157,4 @@ def view_settings():
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "5000"))
     logger.info(f"Starting Flask server on 0.0.0.0:{port}")
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(host="0.0.0.0", port=port, debug=False)    
