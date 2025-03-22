@@ -62,16 +62,11 @@ def start_service():
                 input_handler.stop()
             except:
                 pass
-    
-
-        
         input_handler.start()
                     
-        
         bot_thread.start()
 
         input_handler.is_running = True
-        
         
         def announce():
             sh = SpeechHandler()
@@ -98,8 +93,6 @@ def stop_service():
         
         if input_handler is not None:
             input_handler.stop()
-        
-        
         
         if bot_thread and bot_thread.is_alive():
             logger.info("Waiting for bot thread to finish...")
