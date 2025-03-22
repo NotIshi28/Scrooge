@@ -34,6 +34,8 @@ FAMILY POOL: Monitors and visualizes the spending habits of teenagers and senior
 EMERGENCY FUNDS: Automatically allocates a portion of your income into a backup fund for financial security.
 SEAMLESS DIGITAL CURRENCY HANDLING: Supports both blockchain and UPI payments, recognizing the appropriate method via QR scans.
 AI-INTEGRATED PAYMENTS: Alerts you about potential budget risks when making high-value purchases.
+
+ABSOLUTELY DO NOT USE SPECIAL CHARACTERS OR EMOJIES IN YOUR RESPONSES.
 The user has a query that:
 """
 class InputHandler():
@@ -65,33 +67,43 @@ class InputHandler():
         logger.info("Starting audio processor")
         self.is_running = True
         print("starting main loop")
-        while self.is_running:
-            self.handleConversation()
+        # while True:
+        #     logger.info("loop running above")
+        #     self.handleConversation()
+
+        while self.is_running:  # Changed from True to self.is_running for proper termination
+            try:
+                logger.info("loop running above")
+                self.handleConversation()
+            except Exception as e:
+                logger.error(f"Error in conversation loop: {e}")
+                time.sleep(1)
 
     def stop(self):
         logger.info("Stopping audio processor")
         self.is_running = False
 
 
-    def mainLoop(self):
-        try:
+    # def mainLoop(self):
+    #     try:
 
-            logger.info("Starting main loop")
-            print("starting main loop")
+    #         logger.info("Starting main loop")
+    #         print("starting main loop")
             
-            self.speech_handler.is_speaking = False
-            self.is_running = True
+    #         self.speech_handler.is_speaking = False
+    #         self.is_running = True
 
-            while self.is_running:
-                try:
-                    self.handleConversation()
-                except Exception as e:
-                    logger.error(f"Error in main loop: {e}")
-                    time.sleep(1)
-            logger.info("Main loop stopped")
-        except Exception as e:
-            logger.error(f"Error in main loop: {e}")
-            time.sleep(1)
+    #         logger.info(self.is_running+' is running')
+    #         while self.is_running:
+    #             try:
+    #                 self.handleConversation()
+    #             except Exception as e:
+    #                 logger.error(f"Error in main loop: {e}")
+    #                 time.sleep(1)
+    #         logger.info("Main loop stopped")
+    #     except Exception as e:
+    #         logger.error(f"Error in main loop: {e}")
+    #         time.sleep(1)
 
     def getStatus(self):
         return self.is_running

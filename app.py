@@ -42,8 +42,7 @@ stop_threads = False
 
 input_handler = InputHandler()
 
-bot_thread = threading.Thread(target=input_handler.mainLoop, args=(lambda: stop_threads, ))
-bot_thread.daemon = True
+
 
 
 @app.route('/api/start', methods=['GET', 'POST'])
@@ -57,14 +56,16 @@ def start_service():
         
         logger.info("Starting service...")
         
-        if input_handler is not None:
-            try:
-                input_handler.stop()
-            except:
-                pass
+        # if input_handler is not None:
+        #     try:
+        #         # input_handler.stop()
+        #     except:
+        #         pass
         input_handler.start()
                     
-        bot_thread.start()
+        # bot_thread = threading.Thread(target=input_handler.mainLoop)
+        # bot_thread.daemon = True
+        # bot_thread.start()
 
         input_handler.is_running = True
         
