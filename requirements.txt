@@ -1,8 +1,8 @@
 Flask==3.1.0
-groq==0.20.0
+groq==0.22.0
 gTTS==2.5.4
-openai==1.68.2
+openai==1.70.0
 pygame==2.5.2
-python-dotenv==1.0.1
+python-dotenv==1.1.0
 pyttsx3==2.98
 SpeechRecognition==3.14.1
